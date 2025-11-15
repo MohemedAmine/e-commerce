@@ -1,0 +1,60 @@
+<%- include('./parts/header')%>
+<%- include('./parts/navbar')%>
+
+
+
+<div class="container">
+    <h2 style="text-align: center;">Add Product</h2>
+
+    <form action="/admin/add" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="productName">Product Name:</label>
+            <input type="text" class="form-control" id="productName" name="productName" placeholder="Name" required>
+              
+        </div>
+
+        <div class="form-group">
+            <label for="productDescription">Product Description:</label>
+            <textarea class="form-control" id="productDescription" name="productDescription" placeholder="Description" rows="6" required></textarea>
+            
+        </div>
+
+        <div class="form-group">
+            <label for="productCategory">Product Category:</label>
+            <select class="form-control" id="productCategory" name="productCategory"  required>
+                <option value="ChooseCategory">Choose a category</option>
+                <option value="computers">Computers</option>
+                <option value="clothes">Clothes</option>
+                <option value="phones">Phones</option>
+                
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="productPrice">Product Price:</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                </div>
+                <input type="number" class="form-control" id="productPrice" name="productPrice" step="0.01" required>
+               
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="productImage">Product Image:</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="productImage" name="productImage" accept="image/*" required>
+                <label class="custom-file-label" for="productImage">Choose file</label>
+            </div>
+        </div>
+        <% if(validationError) { %>
+             <p class="alert alert-danger"><%= validationError %></p>
+
+            <% } %>
+
+        <button type="submit" class="btn btn-success">Add Product</button>
+    </form>
+</div>
+
+<%- include('./parts/footer')%>  

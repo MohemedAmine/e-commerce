@@ -1,0 +1,78 @@
+<%- include('./parts/header')%>
+<%- include('./parts/navbar')%>
+<div class="container">
+<% if(items.length === 0 ){ %>
+       <p class="alert alert-danger">There is no items</p>
+    <% } else { %>
+
+
+        <table class="table">
+           <thead> 
+               <td>Number</td>
+               <td>Product name</td>
+               <td>Price</td>
+               <td>Amount</td>
+               <td>Total</td>
+               <td></td>
+               <tbody>
+                    <% for(let i=0 ; i < items.length ; i++) { %>
+                           <tr>
+                            <td><%= i+1 %></td>
+                            <td><%= items[i].name %></td>
+                            <td><%= items[i].price %></td>
+                            <form method="POST">
+                                   <td><input type="number" name="amount" class="form-control" placeholder="Quantity" required value="<%= items[i].amount  %>"></td>
+                                   <td><%=items[i].price*items[i].amount%> $</td>
+                                   <td>
+                                    <input type="hidden" name="cartId" value="<%=items[i]._id%>">
+                                    <input type="submit" class="btn btn-success" value="Save" formaction="/cart/save">
+                                    <a href="/verifyOrder?cartId=<%= items[i]._id %>&name=<%= items[i].name %>&price=<%= items[i].price %>&amount=<%= items[i].amount %>&buttonType=order" class="btn btn-success">Order</a>
+                                    <input type="submit" class="btn btn-danger" value="Delete" formaction="/cart/delete">
+
+                                   </td>
+                                   
+                            </form>
+                               
+                            
+                           
+                         <td><% if(validationError && cartId ===items[i]._id.toString() ){ %>
+                                       
+                            
+                                <p class="alert alert-danger"><%= validationError.msg %></p>
+                           <% } %></td>
+
+
+
+
+                           </tr>
+                        <% } %>
+               </tbody>
+
+
+
+
+
+           </thead>
+
+
+
+
+        </table>
+
+
+
+
+
+
+
+        <% } %>
+        <form method="post">
+
+         <div class="fixed-bottom fixed- m-3">
+            <input type="submit" class="btn btn-danger" value="Delete all" formaction="/cart/deleteAll">
+            <a href="/verifyOrder?buttonType=orderAll" class="btn btn-success">Order all</a>
+          </div>
+        </form>
+</div>
+
+<%- include('./parts/footer')%>   

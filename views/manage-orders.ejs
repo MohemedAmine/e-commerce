@@ -1,0 +1,97 @@
+<%- include('./parts/header')%>
+<%- include('./parts/navbar')%>
+<div class="container">
+   <form method="GET" class="mt-4">
+      <!-- Filtre par statut -->
+      <div class="form-group">
+       
+        <div class="input-group">
+          <input type="submit" class="btn btn-outline-primary mr-2" value="all" formaction="/admin/all">
+          <input type="submit" class="btn btn-outline-primary mr-2" value="Pending" formaction="/admin/pending">
+          <input type="submit" class="btn btn-outline-primary mr-2" value="Sent" formaction="/admin/sent">
+          <input type="submit" class="btn btn-outline-primary" value="Completed" formaction="/admin/completed">
+        </div>
+      </div>
+   </form>
+   <form method="POST" class="mt-4" action="/admin/email">
+      <div class="form-group" >
+
+        <div class="input-group">
+          <input type="text" class="form-control mr-2" name="email" placeholder="Enter user email" >
+          <input type="submit" class="btn btn-primary" value="Search" >
+        </div>
+      </div>
+    
+
+    </form>
+    
+<% if(items.length === 0 ){ %>
+       <p class="alert alert-danger">There is no items</p>
+    <% } else { %>
+
+
+        <table class="table">
+           <thead> 
+               <td>Email</td>
+               <td>Product name</td>
+               <td>amount</td>
+               <td>cost</td>
+               <td>address</td>
+               <td>status</td>
+               <td>time</td>
+               <td></td>
+               <tbody>
+                    <% for(let i=0 ; i<items.length ; i++) { %>
+                           <tr>
+                            <td> <%= items[i].userId.email %> </td>
+                            <td><%= items[i].productName %></td>
+                            <td><%= items[i].amount %></td>
+                            <td><%=items[i].price*items[i].amount%> $</td>
+                            <td><%= items[i].address %></td>
+                            <form method="POST" action="/admin/orders"> 
+                                   <td>
+                                    <select class="form-control" id="status" name="status" required>
+                                       <option value="Pending" <%= items[i].status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                                       <option value="Sent" <%= items[i].status === 'Sent' ? 'selected' : '' %>>Sent</option>
+                                       <option value="Completed" <%= items[i].status === 'Completed' ? 'selected' : '' %>>Completed</option>
+                                   </select>
+                                   
+                                 </td>
+                                    <input type="hidden"  name="id" value="<%= items[i]._id %>">
+                                    <td><%= items[i].timestamp %></td>
+                                    <td>
+                                    <input type="submit" class="btn btn-success" value="Save">
+                                 </td>
+                            </form>
+                            
+                                  
+                       
+
+
+
+
+                           </tr>
+                        <% } %>
+               </tbody>
+
+
+
+
+
+           </thead>
+
+
+
+
+        </table>
+
+
+
+
+
+
+
+        <% } %>
+</div>
+
+<%- include('./parts/footer')%>   

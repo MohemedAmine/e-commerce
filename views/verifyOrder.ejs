@@ -1,0 +1,34 @@
+<%- include('./parts/header')%>
+<%- include('./parts/navbar')%>
+
+
+
+
+<div class="container mt-5">
+    <h2>Vérifier la commande</h2>
+    <form action="/orders" method="POST">
+      <div class="form-group">
+        <label for="address">Adresse de livraison :</label>
+        <input type="text" class="form-control" name="address" value="Address" required>
+        <% if (buttonType === 'order') { %>
+        <input type="hidden" class="form-control" name="productName" value="<%= productName %>">
+        <input type="hidden" class="form-control" name="cartId" value="<%= cartId %>">
+        <input type="hidden" class="form-control" name="price" value="<%= price %>">
+        <input type="hidden" class="form-control" name="amount" value="<%= amount %>">
+        <input type="hidden" class="form-control" name="buttonType" value="<%= buttonType %>">
+          <% } else { %>
+            <input type="hidden" class="form-control" name="buttonType" value="<%= buttonType %>">
+            <% } %>
+      </div>
+      <input type="submit" class="btn btn-primary" value="Valider la commande"></input>
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+<%- include('./parts/footer')%>
