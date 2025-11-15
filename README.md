@@ -182,8 +182,8 @@ Ensure you have the following installed on your system:
 #### 1️⃣ Clone & Navigate to Project
 
 ```bash
-git clone <repository-url>
-cd project
+git clone https://github.com/MohemedAmine/e-commerce.git
+cd e-commerce
 ```
 
 #### 2️⃣ Install Dependencies
@@ -572,9 +572,9 @@ For full details, see the `LICENSE` file or `package.json`.
 
 **Mohamed Lamine OULAD SAID**
 
-- 📧 Email: [your-email@example.com]
-- 💼 LinkedIn: [your-linkedin-profile]
-- 🐙 GitHub: [your-github-profile]
+- 📧 Email: mohamedamineouledsaid10@gmail.com
+- 💼 LinkedIn: https://www.linkedin.com/in/mohamed-amine-ouled-said-900720364
+- 🐙 GitHub: https://github.com/MohemedAmine/e-commerce.git
 
 ---
 
@@ -607,3 +607,4 @@ For questions, bug reports, or feature requests:
 **Built with ❤️ using Node.js, Express, and MongoDB**
 
 </div>
+
